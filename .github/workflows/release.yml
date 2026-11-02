@@ -1,0 +1,44 @@
+name: Release
+
+# Push a tag such as v1.0.0 (matching "version" in app/appinfo.json) and this builds the package,
+# writes the Homebrew Channel manifest, and publishes both as a GitHub release.
+# If docs/release-notes/<tag>.md exists (for example v1.0.0.md) it becomes the release description.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the tag matches the app version
+        run: |
+          V="$(sed -n 's/.*"version": *"\([^"]*\)".*/\1/p' app/appinfo.json | head -n1)"
+          if [ "v$V" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match the app version v$V in app/appinfo.json" >&2
+            exit 1
+          fi
+
+      - name: Build the package and the manifest
+        run: |
+          ./tools/build-ipk.sh
+          ./tools/make-manifest.sh
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          NOTES_FILE="docs/release-notes/${GITHUB_REF_NAME}.md"
+          if [ -f "$NOTES_FILE" ]; then
+            NOTES=(--notes-file "$NOTES_FILE")
+          else
+            NOTES=(--notes "See CHANGELOG.md for what changed. Install from the Homebrew Channel (repository: https://raw.githubusercontent.com/batmanrises/slopium/main/repo/apps.json) or download the .ipk below. Read DISCLAIMER.md first.")
+          fi
+          gh release create "$GITHUB_REF_NAME" build/*.ipk build/*.manifest.json \
+            --title "Slopium ${GITHUB_REF_NAME#v}" \
+            "${NOTES[@]}"

@@ -1,0 +1,13 @@
+Clean icon marks
+================
+The monochrome marks in icons/marks/ are taken from the CleanFrame project
+(https://github.com/nthnclrk/CleanFrame, MIT licence, see CleanFrame-MIT.txt) and its
+webOS port. Per CleanFrame's notices:
+
+ - Simple Icons service marks: CC0 (SimpleIcons-CC0.txt).
+ - Disney+, ABC and SBS marks: Custom Brand Icons, MIT (CustomBrandIcons-MIT.txt).
+ - Utility outlines (home, apps, art, settings, devices): original CleanFrame drawings, MIT.
+ - Exact revisions and adaptations: CleanFrame-icon-sources.json.
+
+Brand marks identify their services only. Their owners keep all trademark rights; this
+launcher claims no endorsement or affiliation.

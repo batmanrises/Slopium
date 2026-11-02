@@ -1,0 +1,10 @@
+Package: io.github.batmanrises.slopium
+Version: 1.0.0
+Section: misc
+Priority: optional
+Architecture: all
+Installed-Size: 1
+Maintainer: batmanrises <nobody@example.com>
+Description: Slopium - a calm home screen launcher for LG webOS TVs
+webOS-Package-Format-Version: 2
+webOS-Packager-Version: x.y.x

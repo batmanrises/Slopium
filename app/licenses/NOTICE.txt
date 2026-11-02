@@ -1,0 +1,40 @@
+SLOPIUM - NOTICES, CREDITS AND DISCLAIMER
+=========================================
+
+Slopium is free, open-source software released under the MIT licence (LICENSE.txt).
+It is a personal / hobby project, not a commercial product.
+
+CREDITS
+-------
+ - Hearth (https://github.com/rudra-avatar/Hearth, MIT) - the original base this launcher is
+   built on. Hearth is itself a modified version of partridgeworks/webos-launcher (MIT).
+   Their copyright notices are kept in LICENSE.txt, as the MIT licence requires.
+ - CleanFrame (https://github.com/TheLord83/CleanFrame-webos; upstream
+   https://github.com/nthnclrk/CleanFrame, MIT) - the idea and the monochrome icon marks used
+   by the "marks" icon pack. See ICON-MARKS-NOTICE.txt, CleanFrame-MIT.txt,
+   SimpleIcons-CC0.txt, CustomBrandIcons-MIT.txt and CleanFrame-icon-sources.json.
+ - Simple LG Launcher (https://github.com/fardroid/Simple-LG-launcher) - the inspiration for
+   the weather widget.
+ - Glasshouse (https://github.com/rorygallagher2024/glasshouse, MIT) - the idea and the TV
+   services behind the Recent apps panel (Glasshouse-MIT.txt).
+ - Open-Meteo (https://open-meteo.com, CC BY 4.0) - weather data.
+ - Preact (MIT), Feather icons (MIT) and the bundled typefaces (SIL Open Font License 1.1).
+   Licence texts are in this folder; see THIRD_PARTY_NOTICES.md in the source repository.
+
+DISCLAIMER
+----------
+ - USE AT YOUR OWN RISK. The software is provided "AS IS", without warranty of any kind.
+   The authors and contributors are not liable for any damage, data loss, malfunction,
+   loss of warranty or any other harm to your TV, your other devices or anything else.
+ - Many features need a ROOTED TV (Homebrew Channel). Rooting and running commands with root
+   privileges can void your warranty and, if something goes wrong, can stop the TV working
+   correctly. Slopium uses those privileges to run commands such as listing apps, launching,
+   closing or uninstalling apps, reading files from USB / internal storage, and changing some
+   TV settings. Only use it if you understand and accept these risks.
+ - Wallpapers, app icons, logos, brand marks, photographs and other third-party material
+   belong to their respective owners and are NOT covered by the MIT licence. They are
+   included only to identify apps and to make the launcher usable. If you own something that
+   is included and want it removed, please open an issue.
+ - Not affiliated with, endorsed by or sponsored by LG Electronics, Netflix, Google/YouTube,
+   Disney, Amazon, Apple or any other company. LG and webOS are trademarks of LG Electronics.
+ - Slopium is intended for personal use on a TV that you own.

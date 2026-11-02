@@ -1,0 +1,19 @@
+{
+  "id": "io.github.batmanrises.slopium",
+  "version": "1.0.0",
+  "vendor": "Slopium",
+  "type": "web",
+  "main": "index.html",
+  "title": "\u200b",
+  "appDescription": "Slopium: a calm home screen with a clock, weather, your apps and inputs, a recent-apps panel, and a wallpaper or USB slideshow.",
+  "icon": "icon.png",
+  "largeIcon": "largeIcon.png",
+  "iconColor": "#050505",
+  "bgColor": "#000000",
+  "resolution": "1920x1080",
+  "disableBackHistoryAPI": true,
+  "transparent": false,
+  "splashBackground": "splash.png",
+  "requiredMemory": 20,
+  "supportGIP": true
+}
