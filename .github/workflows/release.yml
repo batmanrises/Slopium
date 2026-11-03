@@ -1,44 +1,89 @@
 name: Release
 
-# Push a tag such as v1.0.0 (matching "version" in app/appinfo.json) and this builds the package,
-# writes the Homebrew Channel manifest, and publishes both as a GitHub release.
-# If docs/release-notes/<tag>.md exists (for example v1.0.0.md) it becomes the release description.
+# Publishes a new release automatically.
+#
+#  * Edit "version" in app/appinfo.json and commit to main. This workflow notices the new
+#    version, builds the package, writes the Homebrew Channel manifest and publishes
+#    release v<version> (the tag is created for you).
+#  * Or open the Actions tab, choose "Release" and click "Run workflow".
+#    Tick "test_only" to just build a test .ipk (an artifact on the run page) without publishing.
+#
+# If release v<version> already exists nothing happens, so ordinary commits never
+# publish by accident. If docs/release-notes/v<version>.md exists it becomes the release text.
 on:
   push:
-    tags: ['v*']
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'packaging/**'
+      - 'tools/**'
+      - 'docs/release-notes/**'
+  workflow_dispatch:
+    inputs:
+      test_only:
+        description: 'Only build a test package (download it from the run page); do not publish a release'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
 
+concurrency:
+  group: release
+  cancel-in-progress: false
+
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      TEST_ONLY: ${{ github.event.inputs.test_only }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check the tag matches the app version
+      - name: Read the version and check whether it is already released
+        id: ver
         run: |
           V="$(sed -n 's/.*"version": *"\([^"]*\)".*/\1/p' app/appinfo.json | head -n1)"
-          if [ "v$V" != "$GITHUB_REF_NAME" ]; then
-            echo "Tag $GITHUB_REF_NAME does not match the app version v$V in app/appinfo.json" >&2
-            exit 1
+          if [ -z "$V" ]; then echo "Could not read the version from app/appinfo.json" >&2; exit 1; fi
+          TAG="v$V"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          if [ "$TEST_ONLY" = "true" ]; then
+            echo "Test build only: building $TAG without publishing."
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          elif gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists. Raise the version in app/appinfo.json to publish a new one."
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Release $TAG does not exist yet, publishing it."
+            echo "exists=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Build the package and the manifest
+        if: steps.ver.outputs.exists == 'false'
         run: |
-          ./tools/build-ipk.sh
-          ./tools/make-manifest.sh
+          bash tools/build-ipk.sh
+          bash tools/make-manifest.sh
+
+      - name: Keep the test package (test builds only)
+        if: steps.ver.outputs.exists == 'false' && github.event.inputs.test_only == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: slopium-test-build
+          path: build/*.ipk
 
       - name: Publish the release
-        env:
-          GH_TOKEN: ${{ github.token }}
+        if: steps.ver.outputs.exists == 'false' && github.event.inputs.test_only != 'true'
         run: |
-          NOTES_FILE="docs/release-notes/${GITHUB_REF_NAME}.md"
+          TAG="${{ steps.ver.outputs.tag }}"
+          NOTES_FILE="docs/release-notes/${TAG}.md"
           if [ -f "$NOTES_FILE" ]; then
             NOTES=(--notes-file "$NOTES_FILE")
           else
             NOTES=(--notes "See CHANGELOG.md for what changed. Install from the Homebrew Channel (repository: https://raw.githubusercontent.com/batmanrises/slopium/main/repo/apps.json) or download the .ipk below. Read DISCLAIMER.md first.")
           fi
-          gh release create "$GITHUB_REF_NAME" build/*.ipk build/*.manifest.json \
-            --title "Slopium ${GITHUB_REF_NAME#v}" \
+          gh release create "$TAG" build/*.ipk build/*.manifest.json \
+            --target "$GITHUB_SHA" \
+            --title "Slopium ${TAG#v}" \
             "${NOTES[@]}"
