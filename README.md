@@ -8,7 +8,7 @@
 
 Slopium is built on **[Hearth](https://github.com/rudra-avatar/Hearth)** by rudra-avatar (MIT) but is its own project with its own app ID, so it installs next to Hearth. See [Credits](#credits).
 
-<p align="center"><img src="docs/screenshots/home.png" alt="Slopium home screen" width="720"><br><sub>Home screen (the weather values in this screenshot are sample data).</sub></p>
+<p align="center"><img src="docs/screenshots/home.jpg" alt="Slopium home screen" width="720"><br><sub>Home screen (the weather values in this screenshot are sample data).</sub></p>
 
 ## What it does
 
