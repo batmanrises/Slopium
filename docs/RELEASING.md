@@ -37,7 +37,7 @@ The workflow refuses to overwrite an existing release. To replace one, delete th
 
 ## Working on Windows (VS Code and Git Bash)
 
-You do not need to build anything on your PC. Git Bash normally does not include the `ar` tool that packaging needs, and GitHub builds the package for you anyway.
+You do not need to build anything on your PC, because GitHub builds the package for you. If you want to build one locally anyway, `bash tools/build-ipk.sh` works in Git Bash (it does not need the `ar` tool).
 
 **Making a change**
 
@@ -78,7 +78,7 @@ Only use this if you cannot use the workflow. The Homebrew Channel needs the man
 
 ## Building by hand (Linux or macOS, or Windows with WSL)
 
-On a computer with `bash`, `tar`, `gzip` and `ar`:
+On any computer with `bash`, `tar` (GNU) and `gzip` (this includes Git Bash on Windows):
 
 ```sh
 bash tools/build-ipk.sh

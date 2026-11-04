@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1: install fix
+
+- **Fixed "-5: Failed to extract package" on some TVs** (reported on webOS 5.5). The package is now written in exactly the layout that ares-package produces: plain ustar tar archives with short, `usr/...` file names, and ar members without a trailing slash. Version 1.0.0 contained two icon paths that were 101 characters long, which made the packager write GNU "long name" records that older webOS installers cannot read.
+- `tools/build-ipk.sh` no longer needs the `ar` tool, so it also runs in Git Bash on Windows, and it stops with an error instead of writing a package that older TVs cannot read.
+
 ## 1.0.0: first public release as Slopium
 
 > Version numbering starts again at 1.0.0 because Slopium is a new app with its own ID. The 2.x numbers belonged to earlier private builds under the old `tld.my.customlauncher` ID.

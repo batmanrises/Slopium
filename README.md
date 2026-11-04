@@ -53,9 +53,9 @@ Plain, Frosted card, Stacked, Digital LED, Dot matrix, Nixie tubes, Analogue dia
 Download `io.github.batmanrises.slopium_<version>_all.ipk` from the [Releases](https://github.com/batmanrises/slopium/releases) page (or build it, see [Build](#build)) and install it with **[webOS Dev Manager](https://github.com/webosbrew/dev-manager-desktop)**, **or** over SSH on a rooted TV:
 
 ```sh
-scp -O io.github.batmanrises.slopium_1.0.0_all.ipk root@TV_IP:/tmp/
+scp -O io.github.batmanrises.slopium_1.0.1_all.ipk root@TV_IP:/tmp/
 ssh root@TV_IP
-luna-send -i luna://com.webos.appInstallService/dev/install '{"id":"com.ares.defaultName","ipkUrl":"/tmp/io.github.batmanrises.slopium_1.0.0_all.ipk","subscribe":true}'
+luna-send -i luna://com.webos.appInstallService/dev/install '{"id":"com.ares.defaultName","ipkUrl":"/tmp/io.github.batmanrises.slopium_1.0.1_all.ipk","subscribe":true}'
 luna-send -n 1 luna://com.webos.applicationManager/launch '{"id":"io.github.batmanrises.slopium"}'
 ```
 
@@ -104,7 +104,7 @@ Weather comes from [Open-Meteo](https://open-meteo.com). The only things sent ar
 
 ## Build
 
-Needs `bash`, `tar`, `gzip` and `ar` (binutils). No Node or npm.
+Needs only `bash`, `tar` (GNU), `gzip`, `wc`, `sed`, `du` and `date`, all of which come with Git Bash on Windows. No Node, npm or `ar` tool.
 
 ```sh
 ./tools/build-ipk.sh      # writes build/io.github.batmanrises.slopium_<version>_all.ipk
