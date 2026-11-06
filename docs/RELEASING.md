@@ -13,7 +13,7 @@ https://raw.githubusercontent.com/batmanrises/slopium/main/repo/apps.json
 ## Publish a new version (from the GitHub website)
 
 1. Open `app/appinfo.json`, click the pencil icon, and raise `"version"` (for example `1.0.0` to `1.0.1`). A new version must be **higher** than the one on the TV, or it will not be offered as an update.
-2. Optional but recommended: write the release text. Open `docs/release-notes/`, choose **Add file, Create new file**, name it `v1.0.1.md` (the letter `v` plus the version) and write what changed. If this file exists it becomes the release description. Add a line to `CHANGELOG.md` too.
+2. Add the changes to `CHANGELOG.md` as a new section at the top, with a heading that starts with the version, for example `## 1.0.1: short title`, followed by the bullet points. **That section becomes the release text** (only that section, not the whole file).
 3. Commit to `main`.
 4. Open the **Actions** tab. A run called **Release** starts by itself and takes about a minute. When it is green, the **Releases** page shows "Slopium 1.0.1" with the `.ipk` and the manifest attached.
 5. On the TV, open the Homebrew Channel: Slopium shows an **Update** button.

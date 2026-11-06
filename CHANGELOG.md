@@ -1,9 +1,13 @@
 # Changelog
 
+## 1.0.2: icon fixes
+
+- **Fixed app icons that did not convert properly to white marks** (Clean marks). Icons whose logo touches the edge of the icon, such as Moonfin, lost most of their shape. Icons with fine detail on a transparent background, such as Aurora, turned into a solid blob. They now convert to a complete mark. Icons converted earlier are redone automatically.
+
 ## 1.0.1: install fix
 
-- **Fixed "-5: Failed to extract package" on some TVs** (reported on webOS 5.5). The package is now written in exactly the layout that ares-package produces: plain ustar tar archives with short, `usr/...` file names, and ar members without a trailing slash. Version 1.0.0 contained two icon paths that were 101 characters long, which made the packager write GNU "long name" records that older webOS installers cannot read.
-- `tools/build-ipk.sh` no longer needs the `ar` tool, so it also runs in Git Bash on Windows, and it stops with an error instead of writing a package that older TVs cannot read.
+- **Fixed the "-5: Failed to extract package" install error** that some TVs showed with 1.0.0 (reported on webOS 5.5). The package is now built in the exact layout those TVs expect.
+- Building the package no longer needs the `ar` tool, so it also works in Git Bash on Windows.
 
 ## 1.0.0: first public release as Slopium
 

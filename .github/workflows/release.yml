@@ -9,7 +9,8 @@ name: Release
 #    Tick "test_only" to just build a test .ipk (an artifact on the run page) without publishing.
 #
 # If release v<version> already exists nothing happens, so ordinary commits never
-# publish by accident. If docs/release-notes/v<version>.md exists it becomes the release text.
+# publish by accident. The release text is the section of CHANGELOG.md for that version
+# (the part under the "## <version>" heading), so write the changes there before you publish.
 on:
   push:
     branches: [main]
@@ -17,7 +18,6 @@ on:
       - 'app/**'
       - 'packaging/**'
       - 'tools/**'
-      - 'docs/release-notes/**'
   workflow_dispatch:
     inputs:
       test_only:
@@ -77,11 +77,23 @@ jobs:
         if: steps.ver.outputs.exists == 'false' && github.event.inputs.test_only != 'true'
         run: |
           TAG="${{ steps.ver.outputs.tag }}"
-          NOTES_FILE="docs/release-notes/${TAG}.md"
-          if [ -f "$NOTES_FILE" ]; then
-            NOTES=(--notes-file "$NOTES_FILE")
+          VER="${TAG#v}"
+          # Release text = the CHANGELOG.md section for this version (without its heading).
+          tr -d '\r' < CHANGELOG.md | awk -v v="$VER" '
+            /^## / {
+              if (found) exit
+              h = "## " v
+              if (index($0, h) == 1) {
+                rest = substr($0, length(h) + 1, 1)
+                if (rest == "" || rest == ":" || rest == " ") { found = 1; next }
+              }
+            }
+            found { print }
+          ' | sed '/./,$!d' > build/release-notes.md
+          if [ -s build/release-notes.md ]; then
+            NOTES=(--notes-file build/release-notes.md)
           else
-            NOTES=(--notes "See CHANGELOG.md for what changed. Install from the Homebrew Channel (repository: https://raw.githubusercontent.com/batmanrises/slopium/main/repo/apps.json) or download the .ipk below. Read DISCLAIMER.md first.")
+            NOTES=(--notes "See CHANGELOG.md for what changed. Install and update instructions are in the README.")
           fi
           gh release create "$TAG" build/*.ipk build/*.manifest.json \
             --target "$GITHUB_SHA" \
