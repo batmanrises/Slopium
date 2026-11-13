@@ -8,11 +8,13 @@ The MIT licence in [LICENSE](LICENSE) covers this project's own code and its log
 
 | Project | Licence | What Slopium takes from it |
 |---|---|---|
-| [Hearth](https://github.com/rudra-avatar/Hearth) by rudra-avatar | MIT | **The original base of this launcher**: app skeleton, home screen, settings, wallpapers, weather, clock, edit name/icon, quiet mode and OLED shift ideas and code. |
+| [Hearth](https://github.com/rudra-avatar/Hearth) by rudra-avatar | MIT | **The original base of this launcher**: app skeleton, home screen, settings, wallpapers, weather, clock, edit name/icon, quiet mode and OLED shift ideas and code, and the **screen saver** install script and slideshow QML (adapted for Slopium; none of Hearth's pictures or videos are used). |
 | [partridgeworks/webos-launcher](https://github.com/partridgeworks/webos-launcher) | MIT (© webos-launcher contributors) | The project Hearth was forked from: Luna service bridge, app list and icon loading, remote handling. |
 | [CleanFrame (webOS)](https://github.com/TheLord83/CleanFrame-webos) (upstream: [nthnclrk/CleanFrame](https://github.com/nthnclrk/CleanFrame)) | MIT (© 2026 Nathan Clark; webOS port © 2026 Stefan Wienert, as stated in the licence file bundled with the app) | The idea of clean monochrome icons, and the monochrome icon marks in `app/icons/marks/` (the "marks" icon pack). See `app/licenses/ICON-MARKS-NOTICE.txt`, `CleanFrame-MIT.txt`, `CleanFrame-icon-sources.json`. |
 | [Simple LG Launcher](https://github.com/fardroid/Simple-LG-launcher) by fardroid | not checked | Inspiration for the weather widget. No code or assets are claimed to be taken from it. |
-| [Glasshouse](https://github.com/rorygallagher2024/glasshouse) by Rory Gallagher | MIT (© 2026 Rory Gallagher) | The idea of the **Recent apps panel** (Back on the home screen, "Close all") and the TV services it calls. Licence text: `app/licenses/Glasshouse-MIT.txt`. |
+| [Glasshouse](https://github.com/rorygallagher2024/glasshouse) by Rory Gallagher | MIT (© 2026 Rory Gallagher) | The idea of the **Recent apps panel** (Back on the home screen, "Close all") and the TV services it calls. Also the idea of replacing the stock screen saver by bind-mounting a QML file over it. Licence text: `app/licenses/Glasshouse-MIT.txt`. |
+| [custom-screensaver](https://github.com/webosbrew/custom-screensaver) (Piotr Dobrowolski and others) | MIT | The idea of the **custom screen saver** (a QML file mounted over the TV's own screen saver app). No code is claimed to be copied from it. |
+| [custom-screensaver-aerial](https://github.com/aabytt/custom-screensaver-aerial) by aabytt | MIT | How a video is shown on the TV (the PunchThrough area and the QtMultimedia imports), learned from its QML. No code is claimed to be copied from it. |
 | [webOS Brew / Homebrew Channel](https://github.com/webosbrew/webos-homebrew-channel) | MIT | The root access and `exec` service that every rooted feature runs on. Not bundled. |
 
 ## Bundled software and assets

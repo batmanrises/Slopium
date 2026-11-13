@@ -17,6 +17,10 @@ CREDITS
    the weather widget.
  - Glasshouse (https://github.com/rorygallagher2024/glasshouse, MIT) - the idea and the TV
    services behind the Recent apps panel (Glasshouse-MIT.txt).
+ - custom-screensaver (webosbrew, Piotr Dobrowolski and others, MIT) and custom-screensaver-aerial
+   (aabytt, MIT) - the idea of the custom screen saver (a QML file mounted over the TV's own screen
+   saver app) and how video is shown on the TV. The screen saver script and QML are adapted from
+   Hearth's. Slopium ships no pictures or videos of its own for the screen saver.
  - Open-Meteo (https://open-meteo.com, CC BY 4.0) - weather data.
  - Preact (MIT), Feather icons (MIT) and the bundled typefaces (SIL Open Font License 1.1).
    Licence texts are in this folder; see THIRD_PARTY_NOTICES.md in the source repository.

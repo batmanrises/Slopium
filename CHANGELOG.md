@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.0: custom screen saver
+
+- **New: a screen saver of your own** (Settings > Options > *Custom screen saver*). The TV's own screen saver is replaced by a slideshow of your pictures, an animated GIF or a video from a USB drive or the TV's storage. It starts after the idle time set in the TV's own screen saver settings, and any key ends it. *(Needs a rooted TV.)*
+  - Choose a folder (optionally with its sub-folders), or one picture, GIF or video, or leave the choice on *Same as the wallpaper* when the wallpaper is a folder or a picture. There is **no limit** on how many pictures a folder can hold.
+  - Settings: change picture every (10 seconds to 1 hour), shuffle, fit or fill the screen, dim (with its amount), OLED care for a single item, and switch the TV off after a set time. *Show it now* tries it straight away.
+  - **Slopium ships no pictures or videos for it.** It only plays what you choose, so with nothing chosen it does nothing and LG's own screen saver stays.
+  - It survives restarts (a start-up link puts it back), and it repairs itself the next time Slopium starts. Turning it off puts LG's own screen saver back and removes every file Slopium put on the TV.
+  - On webOS 10 and later this is **experimental**: if the TV does not accept the replacement, LG's own screen saver is put back and nothing is restarted.
+- **Works next to Hearth.** The TV has only one screen saver, so only one launcher's can be on. Slopium never replaces or removes Hearth's: if Hearth's is on, Slopium says so and changes nothing; if you switch Hearth's on later, Slopium switches itself off the next time it starts. Slopium only ever takes off its own mount.
+
 ## 1.0.3: wallpaper slideshow fix
 
 - **Fixed the USB slideshow only using part of a big folder.** Only the first 400 pictures (in name order) of a folder were ever loaded, so with more than 400 pictures the rest were never shown and the shuffle just repeated that same group. The limit is now 5,000 pictures per folder, and shuffle covers all of them.

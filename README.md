@@ -16,6 +16,7 @@ Slopium is built on **[Hearth](https://github.com/rudra-avatar/Hearth)** by rudr
 - **Your apps and inputs in one row.** Choose what is shown, re-order, hide, rename and pick icons (including a clean monochrome "marks" icon pack), or use your own picture. Hold OK on an app for its menu.
 - **Recent apps panel.** Press **Back** on the home screen to see the apps still running in memory. **OK** opens one, **hold OK** closes just that one, and **Close all** (top right) closes them all. Its width and height are adjustable in Settings. *(Needs a rooted TV.)*
 - **Wallpaper.** Black, one picture, or a slideshow from the built-in wallpapers or a folder on a USB drive / the TV's storage. Shuffle remembers its order and place across restarts, so every picture plays once before any repeats.
+- **Custom screen saver.** Replace the TV's own screen saver with a slideshow of your pictures, a GIF or a video from a USB drive or the TV's storage (Settings > Options). Slopium has no pictures or videos of its own for it: it plays only what you choose. *(Needs a rooted TV; experimental on webOS 10 and later.)*
 - **Quiet mode.** After a while without a key press the icon row hides and only the clock and weather card remain. To protect the screen from burn-in they change position: *fade out and reappear* (default), *glide*, *jump* or off, on a fixed timetable (first move after 5 seconds, then every 20 seconds), with wallpaper changes timed so they never land on a move. Press any key to return instantly. Optional **OLED pixel shift** too.
 - **Made to be light.** The home screen draws from saved data first; clocks redraw once a minute; unchanged tiles are not redrawn; nothing animates when you return from quiet mode.
 
@@ -67,6 +68,8 @@ Slopium has its **own app ID** (`io.github.batmanrises.slopium`) and its own set
 
 One thing to keep in mind: both launchers can offer **"replace LG Home"** (Options). That feature patches a system file of the stock LG Home, so **turn it on in only one launcher at a time**. The same goes for registering as a TV input: each launcher adds its own entry, so remove the one you no longer use from the input list.
 
+The **custom screen saver** is protected for you: the TV has only one screen saver to replace, so only one launcher's can be on. Slopium never replaces or removes Hearth's. If Hearth's screen saver is on, switching Slopium's on shows a message and changes nothing (turn Hearth's off first). If you switch Hearth's on after Slopium's, Slopium notices the next time it starts, switches its own off and tells you. Slopium only ever takes off its own mount, never Hearth's. One thing it cannot prevent: switching Hearth's screen saver on or off removes whatever is on the TV's screen saver at that moment, so Slopium's may stop until you open Slopium again, which puts it back (unless Hearth's is on).
+
 ## Using it
 
 | Where | Key | Does |
@@ -80,7 +83,7 @@ One thing to keep in mind: both launchers can offer **"replace LG Home"** (Optio
 | Settings | OK, or ← → | OK steps through choices; ← → nudge numbers |
 | Anywhere else | Back | Go back one screen |
 
-Useful settings: **Look** has the Recent apps panel width and height and the quiet-mode movement choice; **Clock** has the clock style, thickness, theme and accent; **Wallpaper** has the picture or slideshow, interval and shuffle.
+Useful settings: **Look** has the Recent apps panel width and height and the quiet-mode movement choice; **Clock** has the clock style, thickness, theme and accent; **Wallpaper** has the picture or slideshow, interval and shuffle; **Options** has the custom screen saver and the root helpers.
 
 ### Settings a fresh install starts with
 
